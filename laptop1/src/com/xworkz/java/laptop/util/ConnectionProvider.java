@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class ConnectionProvider {
 
-//	static String url = "jdbc:mysql://localhost:3306/laptopdb";
-//	static String userName = "root";
-//	static String password = "w1n5t0n";
+	//	static String url = "jdbc:mysql://localhost:3306/laptopdb";
+	//	static String userName = "root";
+	//	static String password = "w1n5t0n";
 
 	private static Connection connection = null;
 
@@ -22,19 +22,19 @@ public class ConnectionProvider {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static Connection getConnection() {
 
 		System.out.println("invoked getConnection()");
-		
+
 		if(connection != null) {
-				return connection;
+			return connection;
 		}
 		else {
 			System.out.println("connection is not closed");
 			return connection;
 		}
-		
+
 	}
 
 	public static void closeConnection() {
@@ -53,7 +53,7 @@ public class ConnectionProvider {
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 }
 

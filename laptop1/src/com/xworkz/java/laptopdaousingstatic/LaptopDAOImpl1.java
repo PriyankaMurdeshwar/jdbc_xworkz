@@ -40,16 +40,15 @@ public class LaptopDAOImpl1 implements LaptopDAO1 {
 		try {
 			Connection connection = ConnectionProvider.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
-			//set the values using setters
+			// set the values using setters
 			preparedStatement.setInt(1, laptopID);
-			preparedStatement.setString(2,laptopBrand);
-			preparedStatement.setString(3,laptopColor);
-			preparedStatement.setDouble(4,laptopPrice);
+			preparedStatement.setString(2, laptopBrand);
+			preparedStatement.setString(3, laptopColor);
+			preparedStatement.setDouble(4, laptopPrice);
 
 			preparedStatement.executeUpdate();
 			System.out.println("1 row is inserted");
-		} 
-		catch (SQLException sqlexception) {
+		} catch (SQLException sqlexception) {
 
 			System.out.println("inside catch block SQL exception");
 			System.out.println(sqlexception.getMessage());
@@ -86,18 +85,17 @@ public class LaptopDAOImpl1 implements LaptopDAO1 {
 		try {
 			Connection connection = ConnectionProvider.getConnection();
 			PreparedStatement prepareStatement = connection.prepareStatement(updateBrand);
-			//set the values using setters
-			prepareStatement.setString(1,laptopBrand);
+			// set the values using setters
+			prepareStatement.setString(1, laptopBrand);
 			prepareStatement.executeUpdate();
 			System.out.println("1 row is updated");
-		}
-		catch (SQLException sqlexception) {
+		} catch (SQLException sqlexception) {
 			System.out.println("inside catch block SQL exception");
 			System.out.println(sqlexception.getMessage());
 			sqlexception.printStackTrace();
 		}
-}
-	
+	}
+
 	@Override
 	public void updateBrandAndPrice() {
 
@@ -129,9 +127,9 @@ public class LaptopDAOImpl1 implements LaptopDAO1 {
 			Connection connection = ConnectionProvider.getConnection();
 
 			PreparedStatement prepareStatement = connection.prepareStatement(updateBrandAndPrice);
-			//set the values using setters
-			prepareStatement.setString(1,laptopBrand);
-			prepareStatement.setDouble(2,laptopPrice);
+			// set the values using setters
+			prepareStatement.setString(1, laptopBrand);
+			prepareStatement.setDouble(2, laptopPrice);
 			prepareStatement.executeUpdate();
 			System.out.println("1 row is updated");
 		} catch (SQLException sqlexception) {
@@ -161,29 +159,26 @@ public class LaptopDAOImpl1 implements LaptopDAO1 {
 			sqlexception.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void deleteLaptopByID(int laptopID) {
 		System.out.println("invoked parameterized deleteLaptopByID()");
 		String deleteQuery = "delete from laptop where id = ?";
-		
-		try {
-		Connection connection = ConnectionProvider.getConnection();
-		PreparedStatement prepareStatement = connection.prepareStatement(deleteQuery);
-		prepareStatement.setInt(1,laptopID);
-		prepareStatement.executeUpdate();
-		System.out.println("1 row is deleted");
-		}
-		 catch (SQLException sqlexception) {
 
-				System.out.println("inside catch block SQL exception");
-				System.out.println(sqlexception.getMessage());
-				sqlexception.printStackTrace();
-			}
-		
-		
+		try {
+			Connection connection = ConnectionProvider.getConnection();
+			PreparedStatement prepareStatement = connection.prepareStatement(deleteQuery);
+			prepareStatement.setInt(1, laptopID);
+			prepareStatement.executeUpdate();
+			System.out.println("1 row is deleted");
+		} catch (SQLException sqlexception) {
+
+			System.out.println("inside catch block SQL exception");
+			System.out.println(sqlexception.getMessage());
+			sqlexception.printStackTrace();
+		}
+
 	}
-	
 
 	@Override
 	public void readSingleRecordById() {
@@ -209,26 +204,24 @@ public class LaptopDAOImpl1 implements LaptopDAO1 {
 			sqlexception.printStackTrace();
 		}
 	}
-	
+
 	public void readSingleRecordById(int laptopID) {
 		System.out.println("parameterized readLaptopPriceByID() invoked");
 		String readSingleRecordById = "select * from laptop where ID =?";
-		try{
+		try {
 			Connection connection = ConnectionProvider.getConnection();
-			PreparedStatement preparedStatement= connection.prepareStatement(readSingleRecordById);
-			//set the values using setters
+			PreparedStatement preparedStatement = connection.prepareStatement(readSingleRecordById);
+			// set the values using setters
 			preparedStatement.setInt(1, laptopID);
 			preparedStatement.executeQuery();
-			
-		}
-		catch (SQLException sqlexception) {
+
+		} catch (SQLException sqlexception) {
 
 			System.out.println("inside catch block SQL exception");
 			System.out.println(sqlexception.getMessage());
 			sqlexception.printStackTrace();
 		}
 	}
-	
 
 	@Override
 	public void readAllRecord() {
@@ -239,8 +232,17 @@ public class LaptopDAOImpl1 implements LaptopDAO1 {
 		try {
 			Connection connection = ConnectionProvider.getConnection();
 
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(readAllRecord);
+//			Statement statement = connection.createStatement();
+//			ResultSet resultSet = statement.executeQuery(readAllRecord);
+//			while (resultSet.next()) {
+//				System.out.println("id " + resultSet.getInt(1));
+//				System.out.println("Brand " + resultSet.getString(2));
+//				System.out.println("Color " + resultSet.getString(3));
+//				System.out.println("Price " + resultSet.getDouble(4));
+//				System.out.println("all row is read by readAllRecord()");
+			
+			PreparedStatement prepareStatement = connection.prepareStatement(readAllRecord);
+			ResultSet resultSet = prepareStatement.executeQuery(readAllRecord);
 			while (resultSet.next()) {
 				System.out.println("id " + resultSet.getInt(1));
 				System.out.println("Brand " + resultSet.getString(2));
@@ -258,7 +260,7 @@ public class LaptopDAOImpl1 implements LaptopDAO1 {
 
 	@Override
 	public void readLaptopPriceByID() {
-		
+
 		System.out.println("invoked readLaptopPriceByID()");
 		String readLaptopPriceByID = "SELECT PRICE FROM laptop WHERE ID= 3";
 
@@ -277,17 +279,17 @@ public class LaptopDAOImpl1 implements LaptopDAO1 {
 			sqlexception.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void readLaptopPriceByID(int laptopID) {
-	
+
 		System.out.println("invoked  parameterized readLaptopPriceByID()");
 		String readLaptopPriceByID = "SELECT PRICE FROM laptop WHERE ID= ?";
 		try {
 			Connection connection = ConnectionProvider.getConnection();
 
-			PreparedStatement preparedStatement= connection.prepareStatement(readLaptopPriceByID);
-			preparedStatement.setDouble(1,laptopID);
+			PreparedStatement preparedStatement = connection.prepareStatement(readLaptopPriceByID);
+			preparedStatement.setDouble(1, laptopID);
 
 			preparedStatement.executeUpdate();
 			System.out.println("laptop price is read by readLaptopPriceByID()");
@@ -297,8 +299,7 @@ public class LaptopDAOImpl1 implements LaptopDAO1 {
 			System.out.println(sqlexception.getMessage());
 			sqlexception.printStackTrace();
 		}
-		
-		
+
 	}
 
 	@Override
@@ -323,26 +324,25 @@ public class LaptopDAOImpl1 implements LaptopDAO1 {
 		}
 
 	}
-	
+
 	@Override
 	public void readLaptopBrandByID(int laptopID) {
 		System.out.println("parameterized readLaptopBrandByID() invoked");
 		String readLaptopBrandByID = "select  BRAND from laptop where ID =?";
-		try{
+		try {
 			Connection connection = ConnectionProvider.getConnection();
-			PreparedStatement preparedStatement= connection.prepareStatement(readLaptopBrandByID);
-			//set the values using setters
+			PreparedStatement preparedStatement = connection.prepareStatement(readLaptopBrandByID);
+			// set the values using setters
 			preparedStatement.setInt(1, laptopID);
 			preparedStatement.executeQuery();
-			
-		}
-		catch (SQLException sqlexception) {
+
+		} catch (SQLException sqlexception) {
 
 			System.out.println("inside catch block SQL exception");
 			System.out.println(sqlexception.getMessage());
 			sqlexception.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
@@ -370,34 +370,23 @@ public class LaptopDAOImpl1 implements LaptopDAO1 {
 
 	@Override
 	public void readLaptopColorSByID(int laptopID) {
-		
+
 		System.out.println("parameterized readLaptopColorSByID() invoked");
 		String readLaptopBrandByID = "select  BRAND from laptop where ID =?";
-		try{
+		try {
 			Connection connection = ConnectionProvider.getConnection();
-			PreparedStatement preparedStatement= connection.prepareStatement(readLaptopBrandByID);
-			//set the values using setters
+			PreparedStatement preparedStatement = connection.prepareStatement(readLaptopBrandByID);
+			// set the values using setters
 			preparedStatement.setInt(1, laptopID);
 			preparedStatement.executeQuery();
-			
-		}
-		catch (SQLException sqlexception) {
+
+		} catch (SQLException sqlexception) {
 
 			System.out.println("inside catch block SQL exception");
 			System.out.println(sqlexception.getMessage());
 			sqlexception.printStackTrace();
 		}
-		
-		
+
 	}
-
-
-
-
-
-
-
-
-
 
 }
