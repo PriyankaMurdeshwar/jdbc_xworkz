@@ -210,10 +210,18 @@ public class LaptopDAOImpl1 implements LaptopDAO1 {
 		String readSingleRecordById = "select * from laptop where ID =?";
 		try {
 			Connection connection = ConnectionProvider.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement(readSingleRecordById);
-			// set the values using setters
-			preparedStatement.setInt(1, laptopID);
-			preparedStatement.executeQuery();
+//			PreparedStatement preparedStatement = connection.prepareStatement(readSingleRecordById);
+//			// set the values using setters
+//			preparedStatement.setInt(1, laptopID);
+//			preparedStatement.executeQuery();
+			
+			PreparedStatement prepareStatement = connection.prepareStatement(readSingleRecordById);
+			ResultSet resultSet = prepareStatement.executeQuery(readSingleRecordById);
+			resultSet.next();
+			System.out.println("id"+ resultSet.getInt(1));
+			System.out.println("id"+ resultSet.getString(2));
+			System.out.println("id"+ resultSet.getString(3));
+			System.out.println("Price " + resultSet.getDouble(4));
 
 		} catch (SQLException sqlexception) {
 

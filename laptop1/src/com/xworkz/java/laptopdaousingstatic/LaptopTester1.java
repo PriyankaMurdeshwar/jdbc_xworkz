@@ -32,8 +32,8 @@ public class LaptopTester1 {
 		//		laptopDAOImpl1.deleteLaptopByID(1);
 		//		System.out.println("-----------------------------------------------------------");
 
-		//		laptopDAOImpl1.readSingleRecordById(5);
-		//		System.out.println("-----------------------------------------------------------");
+				laptopDAOImpl1.readSingleRecordById(5);
+				System.out.println("-----------------------------------------------------------");
 
 		//		laptopDAOImpl1.readLaptopBrandByID(5);
 		//		System.out.println("-----------------------------------------------------------");
@@ -43,8 +43,8 @@ public class LaptopTester1 {
 
 //		        laptopDAOImpl1.readLaptopColorSByID(5);
 //		        System.out.println("-----------------------------------------------------------");
-		
-		        laptopDAOImpl1.readAllRecord();
+//		
+//		        laptopDAOImpl1.readAllRecord();
 
 	}
 
